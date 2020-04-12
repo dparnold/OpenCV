@@ -3,8 +3,8 @@ from scipy import ndimage
 import math
 
 
-
-cap = cv2.VideoCapture(0)
+campath="/dev/video0";
+cap = cv2.VideoCapture(campath)
 
 # Checking if camera can be accessed
 if not cap.isOpened():
@@ -37,13 +37,13 @@ while True:
         cv2.line(frame, (int(mass_center[1]) - crosshair_length, int(mass_center[0])), (int(mass_center[1]) + crosshair_length, int(mass_center[0])),
              (0, 0, 255), crosshair_thickness)
     # Showing video with crosshair
-    cv2.namedWindow('Mask', cv2.WND_PROP_FULLSCREEN)
-    cv2.setWindowProperty('Mask', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    cv2.namedWindow('Video', cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty('Video', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     cv2.imshow('Video', frame)
 
     # Comment the following if you do not want to save a video file
     output_file.write(frame)
-    cv2.imshow('Mask', background_mask_frame)
+    #cv2.imshow('Mask', background_mask_frame)
 
     # Stopp the loop if ESC key is detected
     input_key = cv2.waitKey(1)
